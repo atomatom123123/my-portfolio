@@ -209,15 +209,94 @@
     0%,100%{box-shadow:0 8px 24px -12px rgba(74,222,155,0.25);}
     50%{box-shadow:0 8px 28px -10px rgba(74,222,155,0.5);}
   }
-  .hero .role{
+  .hero-top{
+    display:flex;
+    align-items:center;
+    gap:32px;
+    flex-wrap:wrap;
+  }
+  .photo-frame{
+    position:relative;
+    width:132px;
+    height:132px;
+    flex-shrink:0;
+    border-radius:16px;
+    overflow:hidden;
+    background:var(--panel);
+    border:1px solid var(--line-strong);
+  }
+  .photo-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:50% 20%;
+    display:block;
+    filter:grayscale(0.15) contrast(1.05);
+  }
+  .photo-frame .corner{
+    position:absolute;
+    width:16px;
+    height:16px;
+    border:2px solid var(--green);
+    opacity:.9;
+    pointer-events:none;
+  }
+  .photo-frame .corner.tl{top:-1px; left:-1px; border-right:none; border-bottom:none; border-top-left-radius:6px;}
+  .photo-frame .corner.tr{top:-1px; right:-1px; border-left:none; border-bottom:none; border-top-right-radius:6px;}
+  .photo-frame .corner.bl{bottom:-1px; left:-1px; border-right:none; border-top:none; border-bottom-left-radius:6px;}
+  .photo-frame .corner.br{bottom:-1px; right:-1px; border-left:none; border-top:none; border-bottom-right-radius:6px;}
+  .photo-frame .rec{
+    position:absolute;
+    top:8px; left:8px;
+    display:flex;
+    align-items:center;
+    gap:5px;
     font-family:var(--mono);
-    font-size:14px;
-    color:var(--muted);
-    margin-top:14px;
+    font-size:8.5px;
+    letter-spacing:0.06em;
+    color:var(--green);
+    background:rgba(11,18,32,0.65);
+    padding:3px 6px;
+    border-radius:4px;
+  }
+  .photo-frame .rec .blip{
+    width:5px; height:5px; border-radius:50%;
+    background:var(--green);
+    animation:blink 1.2s steps(1) infinite;
+  }
+  .hero-id{min-width:0;}
+
+  .cta-row{
+    margin-top:28px;
     display:flex;
     flex-wrap:wrap;
-    gap:8px 16px;
+    gap:12px;
   }
+  .btn{
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:0.03em;
+    padding:11px 20px;
+    border-radius:7px;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .btn-primary{
+    background:var(--green);
+    color:var(--void);
+    font-weight:600;
+    box-shadow:0 10px 24px -12px rgba(74,222,155,0.5);
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 14px 30px -12px rgba(74,222,155,0.65);}
+  .btn-ghost{
+    border:1px solid var(--line-strong);
+    color:var(--muted);
+    background:var(--panel);
+  }
+  .btn-ghost:hover{border-color:var(--amber); color:var(--amber); transform:translateY(-2px);}
   .hero .role span{display:flex; align-items:center; gap:7px;}
   .hero .role span::before{
     content:'';
@@ -492,6 +571,9 @@
     .hero{padding:44px 0 40px;}
     .kv-row{grid-template-columns:110px 1fr; font-size:13.5px;}
     .project-panel{padding:22px 18px;}
+    .photo-frame{width:96px; height:96px;}
+    .hero-top{gap:20px;}
+    .btn{font-size:12px; padding:10px 16px;}
   }
 </style>
 </head>
@@ -528,12 +610,35 @@
         <div class="terminal">
           <span class="prompt">$</span> whoami <span class="cursor" aria-hidden="true"></span>
         </div>
-        <h1>ไกรรัช ท้าวแก้ว <span class="nickname">(อะตอม)</span></h1>
-        <div class="role">
-          <span>ปวช.3</span>
-          <span>สาขาเทคโนโลยีสารสนเทศ (IT)</span>
+
+        <div class="hero-top">
+          <div class="photo-frame">
+            <img src="https://github.com/user-attachments/assets/1f871371-8be6-4851-b51c-c0daffff816b" alt="รูปโปรไฟล์ของไกรรัช ท้าวแก้ว (อะตอม)">
+            <span class="corner tl"></span>
+            <span class="corner tr"></span>
+            <span class="corner bl"></span>
+            <span class="corner br"></span>
+            <span class="rec"><span class="blip"></span>ATOM.DEV</span>
+          </div>
+          <div class="hero-id">
+            <h1>ไกรรัช ท้าวแก้ว <span class="nickname">(อะตอม)</span></h1>
+            <div class="role">
+              <span>ปวช.3</span>
+              <span>สาขาเทคโนโลยีสารสนเทศ (IT)</span>
+            </div>
+          </div>
         </div>
+
         <p class="tagline">มุ่งพัฒนาตัวเองให้เป็น Frontend Developer ที่สร้างเว็บไซต์สวยงามและใช้งานได้จริง</p>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#contact">
+            <span aria-hidden="true">📬</span> ติดต่อฉัน
+          </a>
+          <a class="btn btn-ghost" href="mailto:atomsmile123@gmail.com">
+            <span aria-hidden="true">✉️</span> ส่งอีเมลตรง
+          </a>
+        </div>
       </section>
 
       <section id="profile" class="reveal">
